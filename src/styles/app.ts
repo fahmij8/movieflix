@@ -1,4 +1,3 @@
-import { css } from "@emotion/css";
 import { PaletteMode } from "@mui/material";
 
 export const colorPrimary = "#6F6FC8";
@@ -10,12 +9,6 @@ export const colorSuccess = "#4BD84B";
 export const colorBgLight = "#F5F5F5";
 export const colorBgDark = "#1F1D2C";
 export const colorBgWhite = "#FFFFFF";
-
-export const appStyle = (isDarkMode: PaletteMode) =>
-  css({
-    backgroundColor: isDarkMode === "dark" ? colorBgDark : colorBgLight,
-    minHeight: "100vh"
-  });
 
 export const getThemeOptions = (pallete: PaletteMode) => ({
   palette: {

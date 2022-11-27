@@ -1,12 +1,22 @@
-import React from "react";
+import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
+import Routes from "./routes";
+import { MovieflixProvider } from "./context";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
+const AppComponent = () => {
+  return (
+    <MovieflixProvider>
+      <Routes />
+    </MovieflixProvider>
+  );
+};
+
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <StrictMode>
+    <AppComponent />
+  </StrictMode>
 );
