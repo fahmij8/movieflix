@@ -1,6 +1,7 @@
 import { useTheme } from "@mui/material";
+import { SVGProps } from "react";
 
-const Logo = () => {
+const Logo = (props: SVGProps<SVGSVGElement>) => {
   const theme = useTheme();
 
   return (
@@ -9,6 +10,7 @@ const Logo = () => {
       viewBox="252.68 334.09 518.65 99.83"
       width={125}
       height={25}
+      {...props}
     >
       <g>
         <g

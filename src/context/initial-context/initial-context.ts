@@ -1,4 +1,4 @@
-import type { Search as WatchList, SearchResult } from "../../types";
+import type { Search as WatchList, SearchResult } from "types/";
 
 export interface StructInitialContext {
   darkMode: "dark" | "light" | undefined;

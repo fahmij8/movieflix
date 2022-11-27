@@ -1,7 +1,7 @@
 import Grid from "@mui/material/Grid";
 import Switch from "@mui/material/Switch";
 import { ChangeEvent } from "react";
-import { useMovieflixContext } from "../../context";
+import { useMovieflixContext } from "context/";
 import { useTheme } from "@mui/material";
 import { styled } from "@mui/material/styles";
 

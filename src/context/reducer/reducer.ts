@@ -1,4 +1,4 @@
-import { DispatchMovieflix } from "../../types";
+import { DispatchMovieflix } from "types/";
 import { StructInitialContext } from "../initial-context";
 import { caseReducer } from "./case-reducer";
 
