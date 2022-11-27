@@ -1,12 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Logo } from "./components/Logo";
+import { CssBaseline } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { getThemeOptions } from "./styles/app";
+import { useMemo } from "react";
 
-function App() {
+const App = () => {
+  const isPrefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)")
+    ? "dark"
+    : "light";
+  const theme = useMemo(
+    () => createTheme(getThemeOptions(isPrefersDarkMode)),
+    [isPrefersDarkMode]
+  );
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <main>
+        <Logo />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
@@ -18,9 +30,9 @@ function App() {
         >
           Learn React
         </a>
-      </header>
-    </div>
+      </main>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
