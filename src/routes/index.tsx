@@ -1,10 +1,10 @@
 import { lazy, useMemo, Suspense } from "react";
-import { getThemeOptions } from "../styles/app";
-import { useMovieflixContext } from "../context";
+import { getThemeOptions } from "styles/app";
+import { useMovieflixContext } from "context/";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import { Route, Routes } from "react-router";
-import { Loading } from "../components/Loading";
+import { LoadingPage } from "components/Global/LoadingPage";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 const Home = lazy(async () => await import("./Home"));
@@ -23,7 +23,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<LoadingPage />}>
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/:kind/:id" element={<MovieDetail />}></Route>
