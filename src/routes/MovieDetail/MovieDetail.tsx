@@ -1,7 +1,12 @@
-export const MovieDetail = () => {
+import { Link } from "react-router-dom";
+
+const MovieDetail = () => {
   return (
-    <div>
+    <main>
       <h1>MovieDetail</h1>
-    </div>
+      <Link to="/">Test</Link>
+    </main>
   );
 };
+
+export default MovieDetail;

@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import Routes from "./routes";
 import { MovieflixProvider } from "./context";
+import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -10,7 +11,9 @@ const root = ReactDOM.createRoot(
 const AppComponent = () => {
   return (
     <MovieflixProvider>
-      <Routes />
+      <BrowserRouter>
+        <Routes />
+      </BrowserRouter>
     </MovieflixProvider>
   );
 };
