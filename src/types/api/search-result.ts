@@ -1,3 +1,9 @@
+import { AsyncStruct } from "types/context";
+
+export interface StructSearchResult extends AsyncStruct {
+  data: SearchResult[] | undefined;
+}
+
 export interface SearchResult {
   Search: Search[];
   totalResults: string;
