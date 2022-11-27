@@ -1,6 +1,6 @@
 import { StructInitialContext } from "../initial-context";
 
-export const caseReducer = {
+export const caseCommon = {
   SET_VALUE: (state: StructInitialContext, action: any) => ({
     ...state,
     ...action
