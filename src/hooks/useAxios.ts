@@ -1,11 +1,19 @@
 import { useEffect, useState } from "react";
 import axios, { Method } from "axios";
 
-const useAxios = (
-  url: string,
-  method: Method,
-  body?: any
-): [boolean, string, any | null] => {
+interface UseAxiosProps {
+  url: string;
+  method: Method;
+  body?: any;
+  shouldFetch?: boolean;
+}
+
+const useAxios = ({
+  url,
+  method,
+  body,
+  shouldFetch
+}: UseAxiosProps): [boolean, string, any | null] => {
   const [loading, setLoading] = useState<boolean>(false);
   const [data, setData] = useState<any>(null);
   const [error, setError] = useState<string>("");
@@ -29,9 +37,13 @@ const useAxios = (
       }
     };
 
-    fetchData()
-      .then((r) => r)
-      .catch(() => {});
+    if (shouldFetch) {
+      fetchData()
+        .then((r) => r)
+        .catch(() => {});
+    } else {
+      setLoading(false);
+    }
   }, [url]);
 
   return [loading, error, data];

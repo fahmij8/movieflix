@@ -1,10 +1,11 @@
+import { ErrorApi } from "types/api/error";
 import { AsyncStruct } from "types/context";
 
 export interface StructSearchResult extends AsyncStruct {
-  data: SearchResult[] | undefined;
+  data: SearchResult | undefined;
 }
 
-export interface SearchResult {
+export interface SearchResult extends ErrorApi {
   Search: Search[];
   totalResults: string;
   Response: string;

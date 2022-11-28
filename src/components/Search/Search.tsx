@@ -11,14 +11,15 @@ import { FilterContent } from "components/Filter";
 import { Dialog } from "components/Global/Dialog";
 import { useDialog } from "hooks/";
 import { useSearchResult } from "api/search-result";
+import { useMovieflixContext } from "context/";
 
 export function Search() {
   const initSearchQuery = {
     s: "",
     y: "",
-    type: "",
-    page: 1
+    type: ""
   };
+  const { page, dispatch } = useMovieflixContext();
   const [searchQuery, setSearchQuery] =
     useState<typeof initSearchQuery>(initSearchQuery);
 
@@ -38,22 +39,24 @@ export function Search() {
           p: "4px",
           display: "flex",
           alignItems: "center",
-          width: "70%"
+          width: "100%"
         }}
         autoComplete="off"
         onSubmit={onSubmit}
       >
         <InputBase
-          sx={{ ml: 1.5, flex: 1 }}
+          sx={{ ml: 1.5, flex: 1, width: "100%" }}
           placeholder="Search Movie/Series"
           inputProps={{ "aria-label": "search movie/series" }}
           name="search"
           id="search"
           onChange={(e) =>
-            setTimeout(
-              () => setSearchQuery({ ...searchQuery, s: e.target.value }),
-              1000
-            )
+            setTimeout(() => {
+              setSearchQuery({ ...searchQuery, s: e.target.value });
+              if (page !== 1) {
+                dispatch({ type: "SET_VALUE", payload: { page: 1 } });
+              }
+            }, 1000)
           }
         />
         <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />

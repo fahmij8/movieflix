@@ -1,6 +1,7 @@
 import { HeaderHome } from "components/HeaderHome";
 import { Logo } from "components/Logo";
 import { Search } from "components/Search";
+import { MovieCard } from "components/MovieCard";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import { styled } from "@mui/material/styles";
@@ -30,6 +31,7 @@ const Home = () => {
         >
           <ResponsiveLogo />
           <Search />
+          <MovieCard />
         </Grid>
       </Container>
     </main>
