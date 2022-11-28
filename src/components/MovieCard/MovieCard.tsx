@@ -6,18 +6,24 @@ import ImageListItem, {
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import IconButton from "@mui/material/IconButton";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { colorBgWhite } from "styles/app";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Link } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
 import Stack from "@mui/material/Stack";
 import Pagination from "@mui/material/Pagination";
+import Typography from "@mui/material/Typography";
+import { colorBgWhite, colorError } from "styles/app";
 
 export const MovieCard = () => {
-  const { searchResult, page, dispatch } = useMovieflixContext();
+  const { searchResult, page, dispatch, watchList } = useMovieflixContext();
+
+  const isFavorited = (imdbID: string) => {
+    return watchList.find((item) => item.imdbID === imdbID);
+  };
 
   return (
     <div style={{ marginBottom: "50px" }}>
-      {searchResult?.data?.Error && (
+      {searchResult?.data?.Error && !searchResult.loading && (
         <Box sx={{ display: "flex", margin: "20px 0" }}>
           {searchResult.data.Error}
         </Box>
@@ -48,22 +54,55 @@ export const MovieCard = () => {
                 key={`${item.Poster}-${item.Title}`}
               >
                 <img
-                  src={`${item.Poster.replace("SX300", "SX500")}`}
+                  src={`${item.Poster.replace("SX300", "SX1000")}`}
                   alt={item.Title}
                   loading="lazy"
+                  onError={(e) => {
+                    e.currentTarget.src = "https://via.placeholder.com/300";
+                  }}
                 />
                 <ImageListItemBar
-                  title={item.Title}
-                  subtitle={`${item.Type} - ${item.Year}`}
+                  title={
+                    <Link
+                      to={`./${item.Type}/${item.imdbID}`}
+                      style={{ textDecoration: "none", color: colorBgWhite }}
+                    >
+                      <Typography>{item.Title}</Typography>
+                    </Link>
+                  }
+                  subtitle={`${item.Type.charAt(
+                    0
+                  ).toUpperCase()}${item.Type.substring(1).toLowerCase()} - ${
+                    item.Year
+                  }`}
                   actionIcon={
-                    <Link to={`./${item.Type}/${item.imdbID}`}>
+                    isFavorited(item.imdbID) ? (
+                      <IconButton
+                        sx={{ color: colorError }}
+                        aria-label={`info about ${item.Title}`}
+                        onClick={() =>
+                          dispatch({
+                            type: "REMOVE_FAVORITE",
+                            payload: item.imdbID
+                          })
+                        }
+                      >
+                        <FavoriteIcon />
+                      </IconButton>
+                    ) : (
                       <IconButton
                         sx={{ color: colorBgWhite }}
                         aria-label={`info about ${item.Title}`}
+                        onClick={() =>
+                          dispatch({
+                            type: "SET_FAVORITE",
+                            payload: item
+                          })
+                        }
                       >
                         <FavoriteBorderIcon />
                       </IconButton>
-                    </Link>
+                    )
                   }
                 />
               </ImageListItem>

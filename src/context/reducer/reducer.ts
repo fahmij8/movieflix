@@ -2,10 +2,12 @@ import { DispatchMovieflix } from "types/";
 import { StructInitialContext } from "../initial-context";
 import { caseCommon } from "./case-common";
 import { caseSearchResult } from "./case-search-result";
+import { caseWatchList } from "./case-watch-list";
 
 const cases = {
   ...caseCommon,
-  ...caseSearchResult
+  ...caseSearchResult,
+  ...caseWatchList
 };
 
 const reducer = (state: StructInitialContext, action: DispatchMovieflix) => {

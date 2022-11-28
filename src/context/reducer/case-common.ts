@@ -1,8 +1,8 @@
 import { StructInitialContext } from "../initial-context";
 
 export const caseCommon = {
-  SET_VALUE: (state: StructInitialContext, action: any) => ({
+  SET_VALUE: (state: StructInitialContext, payload: any) => ({
     ...state,
-    ...action
+    ...payload
   })
 };

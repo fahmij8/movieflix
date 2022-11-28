@@ -4,6 +4,7 @@ import { ChangeEvent } from "react";
 import { useMovieflixContext } from "context/";
 import { useTheme } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { Logo } from "components/Logo";
 
 const ThemeSwitcher = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -69,20 +70,25 @@ export const HeaderHome = () => {
   };
 
   return (
-    <Grid container direction="row" alignItems="center" height="60px">
-      <Grid
-        item
-        xs={12}
-        display="flex"
-        justifyContent="flex-end"
-        sx={{ mr: 3 }}
-      >
-        <ThemeSwitcher
-          {...{ inputProps: { "aria-label": "Dark Mode Switcher" } }}
-          checked={theme.palette.mode === "dark"}
-          onChange={onThemeSwitch}
-        />
+    <>
+      <Grid container direction="row" alignItems="center" height="60px">
+        <Grid item xs={8} sx={{ pl: "25px" }}>
+          <Logo />
+        </Grid>
+        <Grid
+          item
+          xs={4}
+          justifyContent="flex-end"
+          display="flex"
+          sx={{ pr: "25px" }}
+        >
+          <ThemeSwitcher
+            {...{ inputProps: { "aria-label": "Dark Mode Switcher" } }}
+            checked={theme.palette.mode === "dark"}
+            onChange={onThemeSwitch}
+          />
+        </Grid>
       </Grid>
-    </Grid>
+    </>
   );
 };
